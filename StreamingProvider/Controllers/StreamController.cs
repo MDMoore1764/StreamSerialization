@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using StreamingTest.Models;
-using StreamingTest.Stream;
+using Models.Streaming;
+using StreamSerialization.Stream;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace StreamingTest.Controllers
+namespace StreamProvider.Controllers
 {
     [ApiController]
     public class StreamController : ControllerBase

@@ -9,3 +9,4 @@ D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\obj\Debug\net5.0\Stre
 D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\obj\Debug\net5.0\StreamSerialization.dll
 D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\obj\Debug\net5.0\ref\StreamSerialization.dll
 D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\obj\Debug\net5.0\StreamSerialization.pdb
+D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\obj\Debug\net5.0\StreamSerialization.csproj.AssemblyReference.cache

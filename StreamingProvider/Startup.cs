@@ -8,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Consumers;
-using StreamReaderTest.ObjectReader;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +16,7 @@ using System.Threading.Tasks;
 using StreamConsumer;
 using System.Diagnostics;
 
-namespace StreamingTest
+namespace StreamProvider
 {
     public class Startup
     {
@@ -36,7 +35,7 @@ namespace StreamingTest
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "StreamingTest", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "StreamProvider", Version = "v1" });
             });
         }
 
@@ -47,7 +46,7 @@ namespace StreamingTest
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "StreamingTest v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "StreamProvider v1"));
             }
 
             app.UseHttpsRedirection();

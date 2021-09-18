@@ -1,4 +1,4 @@
-﻿using StreamReaderTest.ObjectReader;
+﻿using StreamSerialization.Stream;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;

@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iis": {
-      "applicationUrl": "http://localhost/StreamingTest",
+      "applicationUrl": "http://localhost/StreamProvider",
       "sslPort": 0
     },
     "iisExpress": {
@@ -21,14 +21,13 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "StreamingTest": {
+    "StreamProvider": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "dotnetRunMessages": "true",
       "applicationUrl": "http://localhost:5001;"
     }
   }

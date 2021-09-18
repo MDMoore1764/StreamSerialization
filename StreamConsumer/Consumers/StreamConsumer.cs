@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
-using StreamingTest.Models;
-using StreamReaderTest.ObjectReader;
+using Models.Streaming;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using StreamSerialization.Stream;
 
 namespace Consumers
 {

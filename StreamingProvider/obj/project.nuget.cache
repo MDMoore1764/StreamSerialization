@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qiS2AG1ffImcfrEs+Zg6hDo2VNM53BrxkhhHDMFIvFFOGKqIN/vYK/LIw4QomLyqO2BrALBYmVc4PwagkaZnJA==",
+  "dgSpecHash": "36lcjIGuv7xYueKI55Uec6uuMuOTaezPtmTz0Duguiplmy+4XGW2c77SfTNYmHDo4kNAm3gAw+LvFnbeGivqrw==",
   "success": true,
-  "projectFilePath": "D:\\Mike\\Other Repo\\C#\\StreamingExample\\StreamingProvider\\StreamingTest.csproj",
+  "projectFilePath": "D:\\Mike\\Other Repo\\C#\\StreamingExample\\StreamingProvider\\StreamProvider.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mike\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Mike\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

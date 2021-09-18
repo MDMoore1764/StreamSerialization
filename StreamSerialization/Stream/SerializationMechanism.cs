@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StreamingTest.Stream
+namespace StreamSerialization.Stream
 {
     public enum SerializationMechanism
     {

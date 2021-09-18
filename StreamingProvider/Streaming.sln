@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreamingTest", "StreamingTest.csproj", "{9BCD504A-93B7-4FEC-81BE-2617BECF6D8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreamProvider", "StreamProvider.csproj", "{9BCD504A-93B7-4FEC-81BE-2617BECF6D8D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreamConsumer", "..\StreamConsumer\StreamConsumer.csproj", "{85F3F9A4-79EA-4925-859D-638D71F75BB5}"
 EndProject

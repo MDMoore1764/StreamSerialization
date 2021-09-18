@@ -329,9 +329,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Mike\\Other Repo\\C#\\StreamingExample\\StreamingProvider\\StreamingTest.csproj",
-      "projectName": "StreamingTest",
-      "projectPath": "D:\\Mike\\Other Repo\\C#\\StreamingExample\\StreamingProvider\\StreamingTest.csproj",
+      "projectUniqueName": "D:\\Mike\\Other Repo\\C#\\StreamingExample\\StreamingProvider\\StreamProvider.csproj",
+      "projectName": "StreamProvider",
+      "projectPath": "D:\\Mike\\Other Repo\\C#\\StreamingExample\\StreamingProvider\\StreamProvider.csproj",
       "packagesPath": "C:\\Users\\Mike\\.nuget\\packages\\",
       "outputPath": "D:\\Mike\\Other Repo\\C#\\StreamingExample\\StreamingProvider\\obj\\",
       "projectStyle": "PackageReference",
