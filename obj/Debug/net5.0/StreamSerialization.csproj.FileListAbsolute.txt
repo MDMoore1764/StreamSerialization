@@ -1,0 +1,11 @@
+D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\bin\Debug\net5.0\StreamSerialization.deps.json
+D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\bin\Debug\net5.0\StreamSerialization.dll
+D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\bin\Debug\net5.0\ref\StreamSerialization.dll
+D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\bin\Debug\net5.0\StreamSerialization.pdb
+D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\obj\Debug\net5.0\StreamSerialization.GeneratedMSBuildEditorConfig.editorconfig
+D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\obj\Debug\net5.0\StreamSerialization.AssemblyInfoInputs.cache
+D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\obj\Debug\net5.0\StreamSerialization.AssemblyInfo.cs
+D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\obj\Debug\net5.0\StreamSerialization.csproj.CoreCompileInputs.cache
+D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\obj\Debug\net5.0\StreamSerialization.dll
+D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\obj\Debug\net5.0\ref\StreamSerialization.dll
+D:\Mike\Other Repo\C#\StreamingExample\StreamSerialization\obj\Debug\net5.0\StreamSerialization.pdb
