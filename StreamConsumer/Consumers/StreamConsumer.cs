@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using StreamSerialization.Stream;
+using StreamProvider.Services;
 
 namespace Consumers
 {
@@ -76,6 +77,20 @@ namespace Consumers
             Console.WriteLine($"Stream read complete in {sw.ElapsedMilliseconds}ms.");
         }
 
+        public IEnumerable<Thingy> LinkedYielder()
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            int count = 0;
+            foreach (var value in StreamService.YieldThingies())
+            {
+                if (count++ == 0) Console.WriteLine($"Time until first value yielded: {sw.ElapsedMilliseconds}ms.");
+                yield return value;
+            }
+
+            Console.WriteLine($"Memory read complete in {sw.ElapsedMilliseconds}ms.");
+        }
+
         public async Task PromptAsync()
         {
             while (true)
@@ -89,9 +104,12 @@ namespace Consumers
                 }
                 Console.WriteLine("Pulling data!");
 
+
+
                 Console.WriteLine(await StreamYielder().AverageAsync(t => t.Value1) + "\n");
                 Console.WriteLine(await BlockStreamYielder().AverageAsync(t => t.Value1) + "\n");
                 Console.WriteLine(await BlockOData().AverageAsync(t => t.Value1) + "\n");
+                Console.WriteLine(LinkedYielder().Average(t => t.Value1) + "\n");
             }
         }
     }

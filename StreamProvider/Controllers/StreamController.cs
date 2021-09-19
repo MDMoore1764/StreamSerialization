@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.Streaming;
+using StreamProvider.Services;
 using StreamSerialization.Stream;
 using System;
 using System.Collections.Generic;
@@ -20,14 +21,22 @@ namespace StreamProvider.Controllers
         [Route("Block")]
         public ActionResult GetBlock()
         {
-            return Ok(YieldThingies());
+            return Ok(StreamService.YieldThingies());
         }
+ 
 
         [HttpGet]
         [Route("Block2")]
         public ActionResult GetBlock2()
         {
-            return Ok(System.Text.Json.JsonSerializer.Serialize(YieldThingies()));
+            return Ok(System.Text.Json.JsonSerializer.Serialize(StreamService.YieldThingies()));
+        }
+
+        [HttpGet]
+        [Route("Block3")]
+        public IEnumerable<Thingy> GetBlock3()
+        {
+            return StreamService.YieldThingies();
         }
 
         [HttpGet]
@@ -36,7 +45,7 @@ namespace StreamProvider.Controllers
         {
 
             await using (StreamSerializer writer = new StreamSerializer(Response.Body))
-                await writer.WriteAsTokenizedSeries(YieldThingies());
+                await writer.WriteAsTokenizedSeries(StreamService.YieldThingies());
         }
 
 
@@ -46,30 +55,13 @@ namespace StreamProvider.Controllers
         {
 
             await using (StreamSerializer writer = new StreamSerializer(Response.Body))
-                await writer.WriteAllAsync(YieldThingies());
+                await writer.WriteAllAsync(StreamService.YieldThingies());
         }
         static Random random = new Random();
 
 
-        private static IEnumerable<Thingy> YieldThingies()
-        {
-            int count = 0;
-            while (count++ < 100)
-            {
-                yield return new Thingy() { Value1 = random.Next(), Value2 = (float)random.NextDouble(), Value3 = random.NextDouble(), SomeString = GenerateBiggun() };
-            }
-        }
 
-        private static string GenerateBiggun()
-        {
-            int min = 0;
-            int max = 5000;
-            string s = "";
-            while (min++ < max)
-            {
-                s += (char)random.Next(0, 255);
-            }
-            return s;
-        }
+
+
     }
 }
