@@ -4,3 +4,6 @@
 .vs/VSWorkspaceState.json
 .vs
 .vs/
+*.dll
+*.pdb
+*.cache

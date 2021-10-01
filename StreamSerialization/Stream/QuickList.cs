@@ -1,17 +1,13 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StreamSerialization.Stream
 {
-    public class QuickList<T> : List<T>
+    public class QuickList<T> : List<T>, IEnumerable<T>
     {
-        private bool hasEnumerated;
+        bool hasEnumerated;
         private IEnumerable<T> baseEnumerable;
         public QuickList(IEnumerable<T> e)
         {
@@ -23,10 +19,7 @@ namespace StreamSerialization.Stream
 
         private int GetCount()
         {
-            if (!hasEnumerated)
-            {
-                IterateTo(-1);
-            }
+            IterateTo(-1);
             return base.Count;
         }
 
@@ -40,7 +33,6 @@ namespace StreamSerialization.Stream
                 return;
 
             IEnumerator<T> enumerator = baseEnumerable.GetEnumerator();
-
 
             bool moveToEnd = finalPosition == -1;
 
@@ -56,7 +48,6 @@ namespace StreamSerialization.Stream
                 }
             }
         }
-
 
         public new T this[int index]
         {
@@ -94,8 +85,8 @@ namespace StreamSerialization.Stream
 
         public new void Clear()
         {
+            hasEnumerated = false;
             base.Clear();
-            baseEnumerable = null;
         }
 
         public new bool Contains(T item)
@@ -139,22 +130,43 @@ namespace StreamSerialization.Stream
             return base.Remove(item);
         }
 
+        public bool Complete()
+        {
+            return hasEnumerated;
+        }
+
+        void SetComplete(bool complete)
+        {
+            hasEnumerated = complete;
+        }
+
+        void AddToCache(T item)
+        {
+            base.Add(item);
+        }
+
         public new IEnumerator<T> GetEnumerator()
         {
-            return new QuickListEnumerator(ref hasEnumerated, this, baseEnumerable.GetEnumerator());
+            if (!hasEnumerated)
+                Clear();
+            return new QuickListEnumerator(this, hasEnumerated ? base.GetEnumerator() : baseEnumerable.GetEnumerator());
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            if (!hasEnumerated)
+                Clear();
+            return new QuickListEnumerator(this, hasEnumerated ? base.GetEnumerator() : baseEnumerable.GetEnumerator());
         }
 
         private class QuickListEnumerator : IEnumerator<T>
         {
-            private int position;
-            private bool hasEnumerated;
-            private List<T> baseList;
+            private QuickList<T> list;
             private IEnumerator<T> baseEnumerator;
 
-            public QuickListEnumerator(ref bool hasEnumerated, List<T> baseList, IEnumerator<T> baseEnumerator)
+            public QuickListEnumerator(QuickList<T> list, IEnumerator<T> baseEnumerator)
             {
-                this.hasEnumerated = hasEnumerated;
-                this.baseList = baseList;
+                this.list = list;
                 this.baseEnumerator = baseEnumerator;
             }
             public T Current => baseEnumerator.Current;
@@ -163,12 +175,15 @@ namespace StreamSerialization.Stream
 
             public bool MoveNext()
             {
+
                 bool canMove = baseEnumerator.MoveNext();
-                if (canMove )
+                if (!list.Complete() && canMove)
                 {
-                    position++;
-                    if(baseList.Count < position)
-                        baseList.Add(baseEnumerator.Current);
+                    list.AddToCache(baseEnumerator.Current);
+                }
+                else if (!canMove && !list.Complete())
+                {
+                    list.SetComplete(true);
                 }
 
                 return canMove;
@@ -176,6 +191,7 @@ namespace StreamSerialization.Stream
 
             public void Reset()
             {
+                list.SetComplete(false);
                 baseEnumerator.Reset();
             }
 

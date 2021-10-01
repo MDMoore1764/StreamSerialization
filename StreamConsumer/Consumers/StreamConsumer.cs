@@ -108,57 +108,22 @@ namespace Consumers
                 Stopwatch sw = new Stopwatch();
                 var streamYielder = StreamYielder().ToEnumerable();
                 QuickList<Thingy> memoryielder = new(StreamYielder().ToEnumerable());
+
                 //var blockStream = await BlockStreamYielder().ToListAsync();
                 //var block = await BlockOData().ToListAsync();
                 //var linked = LinkedYielder().ToList();
 
-                int count = 0;
-                foreach (var value in memoryielder)
-                {
-                    //Console.WriteLine(count++);
-                }
-
-
                 Console.WriteLine(streamYielder.Average(t => t.Value1) + "\n");
-                Console.WriteLine(Average(memoryielder.Select(i => i.Value1)) + "\n");
+                Console.WriteLine(memoryielder.Average(t => t.Value1) + "\n");
                 //Console.WriteLine(blockStream.Average(t => t.Value1) + "\n");
                 //Console.WriteLine(block.Average(t => t.Value1) + "\n");
                 //Console.WriteLine(linked.Average(t => t.Value1) + "\n");
                 Console.WriteLine("Running again!");
                 Console.WriteLine(streamYielder.Average(t => t.Value1) + "\n");
-                Console.WriteLine(Average(memoryielder.Select(i => i.Value1)) + "\n");
+                Console.WriteLine(memoryielder.Average(t => t.Value1) + "\n");
                 //Console.WriteLine(blockStream.Average(t => t.Value1) + "\n");
                 //Console.WriteLine(block.Average(t => t.Value1) + "\n");
                 //Console.WriteLine(linked.Average(t => t.Value1) + "\n");
-            }
-        }
-
-        public static double Average(IEnumerable<int> source)
-        {
-            if (source == null)
-            {
-                return 0;
-            }
-
-            using (IEnumerator<int> e = source.GetEnumerator())
-            {
-                if (!e.MoveNext())
-                {
-                    return 0;
-                }
-
-                long sum = e.Current;
-                long count = 1;
-                checked
-                {
-                    while (e.MoveNext())
-                    {
-                        sum += e.Current;
-                        ++count;
-                    }
-                }
-
-                return (double)sum / count;
             }
         }
     }
