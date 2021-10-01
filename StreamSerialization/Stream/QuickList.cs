@@ -2,25 +2,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace StreamSerialization.Stream
 {
-    public class QuickList<T> : List<T>, IEnumerable<T>
+    public class QuickList<T> : IEnumerable<T>
     {
         bool hasEnumerated;
         private IEnumerable<T> baseEnumerable;
+        private readonly List<T> baseList;
         public QuickList(IEnumerable<T> e)
         {
             baseEnumerable = e;
             hasEnumerated = false;
+            baseList = new List<T>();
         }
 
-        public new int Count => GetCount();
+        public int Count => GetCount();
 
         private int GetCount()
         {
             IterateTo(-1);
-            return base.Count;
+            return baseList.Count;
         }
 
         /// <summary>
@@ -29,105 +32,129 @@ namespace StreamSerialization.Stream
         /// <param name="finalPosition"></param>
         private void IterateTo(long finalPosition)
         {
-            if (baseEnumerable == null || hasEnumerated)
+            if (baseEnumerable == null || Complete())
                 return;
 
             IEnumerator<T> enumerator = baseEnumerable.GetEnumerator();
 
             bool moveToEnd = finalPosition == -1;
 
-            if (moveToEnd || base.Count < finalPosition)
+            if (moveToEnd || baseList.Count < finalPosition)
+
             {
-                base.Clear();
+                baseList.Clear();
                 ulong currentPosition = 0;
                 bool canMoveNext;
                 while (moveToEnd ? (canMoveNext = enumerator.MoveNext()) : currentPosition < (ulong)finalPosition && (canMoveNext = enumerator.MoveNext()))
                 {
-                    base.Add(enumerator.Current);
-                    hasEnumerated = !canMoveNext;
+                    baseList.Add(enumerator.Current);
+                    SetComplete(!canMoveNext);
                 }
             }
         }
 
-        public new T this[int index]
+        private Task EvaluatingList;
+
+        /// <summary>
+        /// Collapse the enumerable to a memory-backed list in a background thread and continue operations.
+        /// </summary>
+        public void Collapse()
+        {
+            //EvaluatingList = Task.Run(() =>
+            //{
+            //    IterateTo(-1);
+            //});
+        }
+
+        public T this[int index]
         {
             get
             {
                 IterateTo(index);
-                return base[index];
+                return baseList[index];
             }
 
-            set => base[index] = value;
+            set => baseList[index] = value;
         }
 
-        public new int IndexOf(T item)
+        public int IndexOf(T item)
         {
             IterateTo(-1);
-            return base.IndexOf(item);
+            return baseList.IndexOf(item);
         }
 
-        public new void Insert(int index, T item)
+        public void Insert(int index, T item)
         {
             IterateTo(index);
-            base.Insert(index, item);
+            baseList.Insert(index, item);
         }
 
-        public new void RemoveAt(int index)
+        public void RemoveAt(int index)
         {
             IterateTo(index);
-            base.RemoveAt(index);
+            baseList.RemoveAt(index);
         }
 
-        public new void Add(T item)
-        {
-            baseEnumerable = baseEnumerable.Append(item);
-        }
-
-        public new void Clear()
-        {
-            hasEnumerated = false;
-            base.Clear();
-        }
-
-        public new bool Contains(T item)
-        {
-            IterateTo(-1);
-            return base.Contains(item);
-        }
-
-        public new void CopyTo(T[] array, int arrayIndex)
+        public void Add(T item)
         {
             if (hasEnumerated)
             {
-                base.CopyTo(array, arrayIndex);
+                AddToCache(item);
+            }
+            baseEnumerable = baseEnumerable.Append(item);
+        }
+
+        public void Clear()
+        {
+            hasEnumerated = false;
+            baseList.Clear();
+        }
+
+        public bool Contains(T item)
+        {
+            IterateTo(-1);
+            return baseList.Contains(item);
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            if (hasEnumerated)
+            {
+                baseList.CopyTo(array, arrayIndex);
             }
             else
             {
                 IEnumerator<T> enumerator = baseEnumerable.GetEnumerator();
 
-                base.Clear();
+                baseList.Clear();
                 for (int index = 0; enumerator.MoveNext(); index++)
                 {
                     if (index >= arrayIndex)
                         array[index] = enumerator.Current;
 
-                    base[index] = enumerator.Current;
+                    baseList[index] = enumerator.Current;
                 }
 
                 hasEnumerated = true;
             }
         }
 
-        public new bool Remove(T item)
+        public void ForEach(Action<T> action)
+        {
+            foreach (T item in this)
+                action.Invoke(item);
+        }
+
+        public bool Remove(T item)
         {
             int count = 0;
             do
             {
                 IterateTo(count);
             }
-            while (!hasEnumerated && !EqualityComparer<T>.Default.Equals(base[count], item));
+            while (!hasEnumerated && !EqualityComparer<T>.Default.Equals(baseList[count], item));
 
-            return base.Remove(item);
+            return baseList.Remove(item);
         }
 
         public bool Complete()
@@ -142,21 +169,28 @@ namespace StreamSerialization.Stream
 
         void AddToCache(T item)
         {
-            base.Add(item);
+            baseList.Add(item);
         }
 
-        public new IEnumerator<T> GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
+            //if(EvaluatingList != null && !EvaluatingList.IsCompleted)
+            //{
+            //    //EvaluatingList.RunSynchronously();
+            //    EvaluatingList.Wait();
+            //}
+
             if (!hasEnumerated)
                 Clear();
-            return new QuickListEnumerator(this, hasEnumerated ? base.GetEnumerator() : baseEnumerable.GetEnumerator());
+            return new QuickListEnumerator(this, hasEnumerated ? baseList.GetEnumerator() : baseEnumerable.GetEnumerator());
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            if (!hasEnumerated)
-                Clear();
-            return new QuickListEnumerator(this, hasEnumerated ? base.GetEnumerator() : baseEnumerable.GetEnumerator());
+            //if (!hasEnumerated)
+            //    Clear();
+            //return new QuickListEnumerator(this, hasEnumerated ? baseList.GetEnumerator() : baseEnumerable.GetEnumerator());
+            return GetEnumerator();
         }
 
         private class QuickListEnumerator : IEnumerator<T>

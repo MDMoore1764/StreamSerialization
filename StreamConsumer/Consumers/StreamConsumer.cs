@@ -3,12 +3,12 @@ using Models.Streaming;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using StreamSerialization.Stream;
 using StreamProvider.Services;
-
+using System.Linq;
+using StreamSerialization.Stream.Extensions;
 
 namespace Consumers
 {
@@ -107,7 +107,12 @@ namespace Consumers
 
                 Stopwatch sw = new Stopwatch();
                 var streamYielder = StreamYielder().ToEnumerable();
-                QuickList<Thingy> memoryielder = new(StreamYielder().ToEnumerable());
+                QuickList<Thingy> memoryielder = StreamYielder().AsQuickList();
+
+                //memoryielder.Add(new Thingy() { Value1 = 500, SomeString = "test" });
+
+                memoryielder.Collapse();
+
 
                 //var blockStream = await BlockStreamYielder().ToListAsync();
                 //var block = await BlockOData().ToListAsync();
@@ -115,6 +120,9 @@ namespace Consumers
 
                 Console.WriteLine(streamYielder.Average(t => t.Value1) + "\n");
                 Console.WriteLine(memoryielder.Average(t => t.Value1) + "\n");
+
+                //memoryielder.Add(new Thingy() { Value1 = 500, SomeString = "test" });
+
                 //Console.WriteLine(blockStream.Average(t => t.Value1) + "\n");
                 //Console.WriteLine(block.Average(t => t.Value1) + "\n");
                 //Console.WriteLine(linked.Average(t => t.Value1) + "\n");
