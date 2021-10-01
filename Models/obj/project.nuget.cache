@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4YLno4MVV8M6GvuWY+3c4eFo0eWDbhfxUUY0JD1sadmD66J8iLbsqDjpYpw0PwnFiQzqx5Ygi4+UAThBPzAbfg==",
+  "dgSpecHash": "rycrKqsh6NWHojaI7GIFe+xZczTv3GC+qf06woK0FEvUNoCRsyiwqk4N/p3KHZv3AT/tz0AEBZEHxBQrb4HuBw==",
   "success": true,
-  "projectFilePath": "D:\\Mike\\Other Repo\\C#\\StreamingExample\\Models\\Models.csproj",
+  "projectFilePath": "C:\\Users\\mmoore\\source\\repos\\GitHubPrivate\\StreamSerialization\\Models\\Models.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

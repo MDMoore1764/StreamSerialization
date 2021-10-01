@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "UWkwhF4cw1QVqtcqHUstzWsk5x9/+2xFFbJ9fyi793TcFFjle8bd0m6pQMjkCDZ/4NYfSaG9eKVlphertgnyiQ==",
+  "dgSpecHash": "z3UswXr1pDFRa0iyM00Yeq/9xrqbC/lNS6fkPS42v0GuBgTCquXQ97n5CLJrcMVvqXgh7lGOeZU28MTffkuqmw==",
   "success": true,
-  "projectFilePath": "D:\\Mike\\Other Repo\\C#\\StreamingExample\\StreamSerialization\\StreamSerialization.csproj",
+  "projectFilePath": "C:\\Users\\mmoore\\source\\repos\\GitHubPrivate\\StreamSerialization\\StreamSerialization\\StreamSerialization.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Mike\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\mmoore\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\mmoore\\.nuget\\packages\\system.linq.async\\5.0.0\\system.linq.async.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

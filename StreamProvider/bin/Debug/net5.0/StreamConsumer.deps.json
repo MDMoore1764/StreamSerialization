@@ -644,7 +644,8 @@
       },
       "StreamSerialization/1.0.0": {
         "dependencies": {
-          "Newtonsoft.Json": "13.0.1"
+          "Newtonsoft.Json": "13.0.1",
+          "System.Linq.Async": "5.0.0"
         },
         "runtime": {
           "StreamSerialization.dll": {}

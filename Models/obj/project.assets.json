@@ -8,23 +8,25 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Mike\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\mmoore\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Mike\\Other Repo\\C#\\StreamingExample\\Models\\Models.csproj",
+      "projectUniqueName": "C:\\Users\\mmoore\\source\\repos\\GitHubPrivate\\StreamSerialization\\Models\\Models.csproj",
       "projectName": "Models",
-      "projectPath": "D:\\Mike\\Other Repo\\C#\\StreamingExample\\Models\\Models.csproj",
-      "packagesPath": "C:\\Users\\Mike\\.nuget\\packages\\",
-      "outputPath": "D:\\Mike\\Other Repo\\C#\\StreamingExample\\Models\\obj\\",
+      "projectPath": "C:\\Users\\mmoore\\source\\repos\\GitHubPrivate\\StreamSerialization\\Models\\Models.csproj",
+      "packagesPath": "C:\\Users\\mmoore\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mmoore\\source\\repos\\GitHubPrivate\\StreamSerialization\\Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Mike\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mmoore\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -32,8 +34,9 @@
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages": {},
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.telerik.com/nuget": {}
       },
       "frameworks": {
         "net5.0": {
@@ -65,7 +68,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.6.21355.2\\RuntimeIdentifierGraph.json"
       }
     }
   }
